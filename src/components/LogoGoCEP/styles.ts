@@ -11,8 +11,10 @@ margin:10px;
 
 export const TextoLogo = styled.Text`
 
-font-size:30px;
+
+font-size:40px;
 font-weight:bold;
-color:${props => props.theme.corPrimaria}
+color:${props => props.theme.corPrimaria};
+font-family:${props => props.theme.fonteLogo};
 
 `;

@@ -1,17 +1,20 @@
 import React from 'react';
 import { View, StatusBar } from 'react-native';
 import Rotas from './routes';
-import theme from './theme';
+import { darkTheme } from './theme';
 import { ThemeProvider } from 'styled-components';
+import { UsuarioProvider } from './hooks/hUsuario';
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <StatusBar backgroundColor={theme.fundoPrimario} barStyle="light-content" />
-      <View style={{ flex: 1, backgroundColor: theme.fundoPrimario, padding: 10 }}>
-        <Rotas />
-      </View>
-    </ThemeProvider>
+    <UsuarioProvider>
+      <ThemeProvider theme={darkTheme}>
+        <StatusBar backgroundColor={darkTheme.fundoPrimario} barStyle="light-content" />
+        <View style={{ flex: 1, backgroundColor: darkTheme.fundoPrimario, padding: 10 }}>
+          <Rotas />
+        </View>
+      </ThemeProvider>
+    </UsuarioProvider>
   );
 }
 
