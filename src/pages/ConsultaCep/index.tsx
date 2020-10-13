@@ -6,6 +6,7 @@ import Input from '../../components/Input';
 import TextoDestaque from '../../components/TextoDestaque';
 import IEndereco from '../../models/IEndereco';
 import APIViaCEP from '../../services/APIViaCEP';
+import { useLightDark } from '../../hooks/HLightDark';
 
 import { Container, AreaResultado } from './styles';
 
@@ -14,14 +15,15 @@ const ConsultaCep: React.FC = () => {
     const [endereco, setEndereco] = useState({ cep: '' } as IEndereco);
     const [cep, setCep] = useState('');
     const [fazendoConsulta, setFazendoConsulta] = useState(false);
+    const { trocarTema } = useLightDark();
 
     const consultarCEP = async (): Promise<void> => {
-        
-        if(cep.length !== 8){
+
+        if (cep.length !== 8) {
             Alert.alert('Ops!', 'Digite um CEP válido');
             return;
         }
-        
+
         setFazendoConsulta(true);
         Keyboard.dismiss();
         const api = new APIViaCEP();
@@ -51,6 +53,14 @@ const ConsultaCep: React.FC = () => {
                 disabled={fazendoConsulta}
                 onPress={consultarCEP}>
                 {fazendoConsulta ? 'Consultando' : 'Consultar'}
+            </BotaoPrimario>
+            <BotaoPrimario
+                onPress={() => trocarTema('dark')}>
+                Tema Dark
+            </BotaoPrimario>
+            <BotaoPrimario
+                onPress={() => trocarTema('light')}>
+                Tema Light
             </BotaoPrimario>
             {
                 endereco.cep.length > 0 &&

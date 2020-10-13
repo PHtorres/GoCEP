@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import DefaultTheme from '../models/DefaultTheme';
 
 export default class Storage{
     
@@ -17,5 +18,18 @@ export default class Storage{
 
     public async RemoverNomeUsuario():Promise<void>{
         await AsyncStorage.removeItem('@GOCEP:NOMEUSUARIO');
+    }
+
+    public async GuardarTemaPadrao(tema:DefaultTheme):Promise<void>{
+        await AsyncStorage.setItem('@GOCEP:TEMAPADRAO', JSON.stringify(tema));
+    }
+
+    public async ObterTemaPadrao():Promise<DefaultTheme | null>{
+        const temaPadraoSalvo = await AsyncStorage.getItem('@GOCEP:TEMAPADRAO');
+        if(temaPadraoSalvo){
+            return JSON.parse(temaPadraoSalvo) as DefaultTheme;
+        }else{
+            return null;
+        }
     }
 }
