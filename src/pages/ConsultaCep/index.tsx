@@ -3,10 +3,10 @@ import { Alert, Keyboard } from 'react-native';
 import BotaoPrimario from '../../components/BotaoPrimario';
 import Endereco from '../../components/Endereco';
 import Input from '../../components/Input';
+import LogoGoCep from '../../components/LogoGoCEP';
 import TextoDestaque from '../../components/TextoDestaque';
 import IEndereco from '../../models/IEndereco';
 import APIViaCEP from '../../services/APIViaCEP';
-import { useLightDark } from '../../hooks/HLightDark';
 
 import { Container, AreaResultado } from './styles';
 
@@ -15,7 +15,6 @@ const ConsultaCep: React.FC = () => {
     const [endereco, setEndereco] = useState({ cep: '' } as IEndereco);
     const [cep, setCep] = useState('');
     const [fazendoConsulta, setFazendoConsulta] = useState(false);
-    const { trocarTema } = useLightDark();
 
     const consultarCEP = async (): Promise<void> => {
 
@@ -39,6 +38,7 @@ const ConsultaCep: React.FC = () => {
 
     return (
         <Container>
+            <LogoGoCep/>
             <TextoDestaque>Digite o CEP para consulta:</TextoDestaque>
             <Input
                 icone="map"
@@ -53,14 +53,6 @@ const ConsultaCep: React.FC = () => {
                 disabled={fazendoConsulta}
                 onPress={consultarCEP}>
                 {fazendoConsulta ? 'Consultando' : 'Consultar'}
-            </BotaoPrimario>
-            <BotaoPrimario
-                onPress={() => trocarTema('dark')}>
-                Tema Dark
-            </BotaoPrimario>
-            <BotaoPrimario
-                onPress={() => trocarTema('light')}>
-                Tema Light
             </BotaoPrimario>
             {
                 endereco.cep.length > 0 &&
