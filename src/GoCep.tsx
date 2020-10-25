@@ -8,8 +8,11 @@ const GoCep: React.FC = () => {
     const { temaPadrao } = useLightDark();
     return (
         <ThemeProvider theme={temaPadrao}>
-            <StatusBar backgroundColor={temaPadrao.fundoPrimario} barStyle="light-content" />
-            <View style={{ flex: 1, backgroundColor: temaPadrao.fundoPrimario, padding: 10 }}>
+            <StatusBar
+                backgroundColor={temaPadrao.fundoPrimario}
+                barStyle={temaPadrao.nome === 'dark' ? 'light-content' : 'dark-content'} />
+            <View
+                style={{ flex: 1, backgroundColor: temaPadrao.fundoPrimario, padding: 10 }}>
                 <Rotas />
             </View>
         </ThemeProvider>

@@ -11,6 +11,7 @@ import HistoricoConsultas from '../pages/HistoricoConsultas';
 import { useLightDark } from '../hooks/HLightDark';
 import Menu from '../pages/Menu';
 import LogoGoCepPequena from '../components/LogoGoCEPPequena';
+import ConsultaPorEndereco from '../pages/ConsultaPorEndereco';
 
 
 const Pilha = createStackNavigator();
@@ -29,6 +30,7 @@ const RotasOperacionais: React.FC = () => {
                 headerShown: false
             }}>
             <Pilha.Screen name="ConsultaCep" component={ConsultaCep} />
+            <Pilha.Screen name="ConsultaPorEndereco" component={ConsultaPorEndereco} />
             <Pilha.Screen name="HistoricoConsultas" component={HistoricoConsultas} />
         </Pilha.Navigator>
     )

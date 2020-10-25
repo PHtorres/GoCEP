@@ -6,6 +6,14 @@ flex:1;
 
 `;
 
+export const Cabecalho = styled.View`
+
+padding:5px;
+
+`;
+
+export const AreaForm = styled.View``;
+
 
 export const AreaResultado = styled.ScrollView`
 
