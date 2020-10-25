@@ -38,7 +38,7 @@ const ConsultaCep: React.FC = () => {
 
     return (
         <Container>
-            <LogoGoCep/>
+            <LogoGoCep />
             <TextoDestaque>Digite o CEP para consulta:</TextoDestaque>
             <Input
                 icone="map"
@@ -59,7 +59,9 @@ const ConsultaCep: React.FC = () => {
                 <AreaResultado>
                     <TextoDestaque>Resultado:</TextoDestaque>
                     <Endereco endereco={endereco} />
-                    <BotaoPrimario onPress={preparaNovaConsulta}>Nova consulta</BotaoPrimario>
+                    <BotaoPrimario onPress={preparaNovaConsulta}>
+                        Nova consulta
+                    </BotaoPrimario>
                 </AreaResultado>
             }
         </Container>

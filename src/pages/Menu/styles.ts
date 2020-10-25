@@ -55,3 +55,36 @@ color:${props => props.theme.corTexto};
 font-size:18px;
 
 `;
+
+export const AreaOpcoes = styled.View`
+
+margin-top: 30px;
+padding:5px;
+
+`;
+
+export const Opcao = styled.TouchableOpacity`
+
+flex-direction: row;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+
+`;
+
+export const AreaIconeTextoOpcao = styled.View`
+
+margin-right: 5px;
+flex-direction:row;
+justify-content:space-between;
+align-items:center;
+
+`;
+
+export const TextoOpcao = styled.Text`
+
+color:${props => props.theme.corTexto};
+font-size:16px;
+margin-left:5px;
+
+`;
