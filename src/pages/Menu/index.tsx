@@ -1,7 +1,6 @@
 import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import LogoGoCep from '../../components/LogoGoCEP';
 import ToggleLightDark from '../../components/ToggleLightDark';
 import { useUsuario } from '../../hooks/hUsuario';
 import { useLightDark } from '../../hooks/HLightDark';
@@ -24,7 +23,6 @@ const Menu: React.FC = () => {
   const { temaPadrao } = useLightDark();
   return (
     <Container>
-      <LogoGoCep />
       <Cabecalho>
         <AreaUsuario>
           <AvatarUsuario>

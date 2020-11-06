@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { FlatList } from 'react-native';
 import BotaoPrimario from '../../components/BotaoPrimario';
+import Endereco from '../../components/Endereco';
 import Input from '../../components/Input';
 import ListBox from '../../components/ListBox';
 import TextoDestaque from '../../components/TextoDestaque';
@@ -21,6 +23,7 @@ const ConsultaPorEndereco: React.FC = () => {
     const [carregandoMunicipios, setCarregandoMunicipios] = useState(false);
     const [ruaAvenida, setRuaAvenida] = useState('');
     const [resultadoPesquisa, setResultadoPesquisa] = useState([] as IEndereco[]);
+    const [pesquisando, setPesquisando] = useState(false);
 
     const pegarUfs = async (): Promise<void> => {
         setCarregandoUfs(true);
@@ -42,14 +45,15 @@ const ConsultaPorEndereco: React.FC = () => {
         setCarregandoMunicipios(false);
     }
 
-    const pesquisar = async ():Promise<void> =>{
+    const pesquisar = async (): Promise<void> => {
+        setPesquisando(true);
         const resultado = await apiViaCep.PesquisarEndereco(
             ufSelecionada,
             municipioSelecionado,
             ruaAvenida
         );
-        console.log(resultado);
         setResultadoPesquisa(resultado);
+        setPesquisando(false);
     }
 
     useEffect(() => {
@@ -63,35 +67,56 @@ const ConsultaPorEndereco: React.FC = () => {
     return (
         <Container>
             <TextoDestaque>Pesquisar endereço</TextoDestaque>
-            <AreaFiltros>
-                {!carregandoUfs &&
-                    <ListBox
-                        label="UF"
-                        itens={listaUFs}
-                        itemSelecionado={ufSelecionada}
-                        aoSelecionarItem={setUfSelecionada} />
-                }
-                {carregandoUfs &&
-                    <TextoCarregando>Carregando UFs...</TextoCarregando>}
-                {
-                    !carregandoMunicipios && listaMunicipios.length > 0 &&
-                    <ListBox
-                        label="Município"
-                        itens={listaMunicipios}
-                        itemSelecionado={municipioSelecionado}
-                        aoSelecionarItem={setMunicipioSelecionado} />
-                }
-                {carregandoMunicipios &&
-                    <TextoCarregando>
-                        Carregando Municipios de {ufSelecionada}
-                    </TextoCarregando>}
-                <Input
-                    icone="map"
-                    placeholder="Digite a rua/avenida..."
-                    value={ruaAvenida}
-                    onChangeText={(texto) => setRuaAvenida(texto)} />
-            </AreaFiltros>
-            <BotaoPrimario onPress={pesquisar}>Pesquisar</BotaoPrimario>
+            {
+                resultadoPesquisa.length === 0 &&
+                <AreaFiltros>
+                    {!carregandoUfs &&
+                        <ListBox
+                            label="UF"
+                            itens={listaUFs}
+                            itemSelecionado={ufSelecionada}
+                            aoSelecionarItem={setUfSelecionada} />
+                    }
+                    {carregandoUfs &&
+                        <TextoCarregando>Carregando UFs...</TextoCarregando>}
+                    {
+                        !carregandoMunicipios && listaMunicipios.length > 0 &&
+                        <ListBox
+                            label="Município"
+                            itens={listaMunicipios}
+                            itemSelecionado={municipioSelecionado}
+                            aoSelecionarItem={setMunicipioSelecionado} />
+                    }
+                    {carregandoMunicipios &&
+                        <TextoCarregando>
+                            Carregando Municipios de {ufSelecionada}
+                        </TextoCarregando>}
+                    <Input
+                        icone="map"
+                        placeholder="Digite a rua/avenida..."
+                        value={ruaAvenida}
+                        onChangeText={(texto) => setRuaAvenida(texto)} />
+                </AreaFiltros>
+            }
+            {
+                resultadoPesquisa.length === 0 &&
+                <BotaoPrimario onPress={pesquisar} disabled={pesquisando}>
+                    {pesquisando ? 'Aguarde...' : 'Pesquisar'}
+                </BotaoPrimario>
+                || resultadoPesquisa.length > 0 &&
+                <BotaoPrimario onPress={() => { setResultadoPesquisa([] as IEndereco[]) }}>
+                    Nova pesquisa
+                </BotaoPrimario>
+            }
+
+            {
+                resultadoPesquisa.length > 0 &&
+                <FlatList
+                    data={resultadoPesquisa}
+                    keyExtractor={(item) => item.cep}
+                    renderItem={({ item }) => <Endereco endereco={item} />}
+                />
+            }
         </Container>
     );
 }

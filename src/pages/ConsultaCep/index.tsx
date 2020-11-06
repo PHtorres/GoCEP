@@ -4,12 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import BotaoPrimario from '../../components/BotaoPrimario';
 import Endereco from '../../components/Endereco';
 import Input from '../../components/Input';
-import LogoGoCep from '../../components/LogoGoCEP';
 import TextoDestaque from '../../components/TextoDestaque';
 import IEndereco from '../../models/IEndereco';
 import APIViaCEP from '../../services/APIViaCEP';
 
-import { Container, Cabecalho, AreaForm, AreaResultado } from './styles';
+import { Container, AreaForm, AreaResultado } from './styles';
 
 const ConsultaCep: React.FC = () => {
 
@@ -40,7 +39,6 @@ const ConsultaCep: React.FC = () => {
 
     return (
         <Container>
-            <LogoGoCep />
             <AreaForm>
                 <TextoDestaque>Digite o CEP para consulta:</TextoDestaque>
                 <Input

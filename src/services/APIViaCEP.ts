@@ -19,14 +19,13 @@ export default class APIViaCEP {
         return { erro: true } as IEndereco;
     }
 
-    public async PesquisarEndereco(
-        uf: string,
-        municipio: string,
-        ruaAvenida: string): Promise<IEndereco[]> {
+    public async PesquisarEndereco(uf: string,municipio: string, ruaAvenida: string): 
+    Promise<IEndereco[]> {
+        const url = `${uf}/${municipio}/${ruaAvenida}/json/`;
         const resultado = await this.client
-            .get<IEndereco[]>(`${uf}/${municipio}/${ruaAvenida}/json/`);
+            .get<IEndereco[]>(url);
 
-            if(resultado.data){
+            if(resultado.data && resultado.ok){
                 return resultado.data;
             }
 

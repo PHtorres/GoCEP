@@ -3,6 +3,7 @@ import { View, StatusBar } from 'react-native';
 import Rotas from './routes';
 import { ThemeProvider } from 'styled-components';
 import { useLightDark } from './hooks/HLightDark';
+import LogoGoCep from './components/LogoGoCEP';
 
 const GoCep: React.FC = () => {
     const { temaPadrao } = useLightDark();
@@ -13,6 +14,7 @@ const GoCep: React.FC = () => {
                 barStyle={temaPadrao.nome === 'dark' ? 'light-content' : 'dark-content'} />
             <View
                 style={{ flex: 1, backgroundColor: temaPadrao.fundoPrimario, padding: 10 }}>
+                <LogoGoCep />
                 <Rotas />
             </View>
         </ThemeProvider>

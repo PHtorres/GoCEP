@@ -12,6 +12,7 @@ import { useLightDark } from '../hooks/HLightDark';
 import Menu from '../pages/Menu';
 import LogoGoCepPequena from '../components/LogoGoCEPPequena';
 import ConsultaPorEndereco from '../pages/ConsultaPorEndereco';
+import LogoGoCep from '../components/LogoGoCEP';
 
 
 const Pilha = createStackNavigator();
@@ -61,12 +62,12 @@ const RotasTab: React.FC = () => {
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
 
-                    if(route.name === 'RotasOperacionais'){
+                    if (route.name === 'RotasOperacionais') {
                         return <LogoGoCepPequena cor={color} />
                     }
 
-                    if(route.name === 'RotasMenu'){
-                        return <IconesFeather name="menu" size={35} color={color}/>
+                    if (route.name === 'RotasMenu') {
+                        return <IconesFeather name="menu" size={35} color={color} />
                     }
                 },
             })}
@@ -75,8 +76,8 @@ const RotasTab: React.FC = () => {
                 inactiveTintColor: temaPadrao.corTexto,
                 showLabel: false,
                 keyboardHidesTabBar: true,
-                style:{
-                    backgroundColor:temaPadrao.fundoPrimario
+                style: {
+                    backgroundColor: temaPadrao.fundoPrimario
                 }
             }}
         >

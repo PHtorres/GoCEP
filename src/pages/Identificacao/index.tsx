@@ -4,9 +4,8 @@ import Input from '../../components/Input';
 import TextoDestaque from '../../components/TextoDestaque';
 import BotaoPrimario from '../../components/BotaoPrimario';
 
-import { Container, AreaLogo, AreaForm } from './styles';
+import { Container, AreaForm } from './styles';
 import { useUsuario } from '../../hooks/hUsuario';
-import LogoGoCep from '../../components/LogoGoCEP';
 
 const Identificacao: React.FC = () => {
     const [nome, setNome] = useState('');
@@ -23,9 +22,6 @@ const Identificacao: React.FC = () => {
     }
     return (
         <Container>
-            <AreaLogo>
-                <LogoGoCep />
-            </AreaLogo>
             <AreaForm>
                 <TextoDestaque>Fala pra gente: qual o seu nome?</TextoDestaque>
                 <Input
