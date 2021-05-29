@@ -48,7 +48,7 @@ const Menu: React.FC = () => {
             color={temaPadrao.corTexto}
             size={30} />
         </Opcao>
-        <Opcao onPress={() => { Alert.alert('Se vire') }}>
+        <Opcao onPress={() => { Alert.alert('Se vire, meu amigo kkkk') }}>
           <AreaIconeTextoOpcao>
             <MaterialIcons
               name="help-outline"
